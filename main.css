@@ -18,20 +18,13 @@ div.jumbotron {
 .student-input-line {
   font-size: 1.2rem;
   margin: 20px 0 10px;
-  display: flex;
-  justify-content: center;
 }
 
-.student-input-line label {
-  margin-right: 10px;
+.student-input-line label{
+  text-align: right;
+
 }
-
-
 .student-input-line button{
   margin-left: 10px;
-}
-
-#student_name {
-  width: 30vw;
-  padding-bottom: .25em;
+  width: 60px;
 }
