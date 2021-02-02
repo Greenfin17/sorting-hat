@@ -21,10 +21,10 @@ const studentBuilder = (studentArray) => {
   for(let item of studentArray) {
     domString += `
     <div class="card my-2" id="card${i}">
-      <div class="card-body">
+      <div class="card-body ${item.house}"">
         <h4 class="card-title">${item.house}</h4>
         <p>${item.name}</p>
-        <button type="button" class="btn expel" id="${item.key}">Expel</button>
+        <button type="button" class="btn expel btn-danger" id="${item.key}">Expel!</button>
       </div>
     </div>`;
     i++;
@@ -38,7 +38,7 @@ const expelledBuilder = (expelled_students) => {
   for(let item of expelled_students) {
     domString +=
       `<div class="card my-2" id="$expelled_${i}">
-        <div class="card-body">
+        <div class="card-body dark-side">
           <h4 class="card-title">Expelled!</h4>
           <h5>${item.name}</h5>
           <p>has gone to the dark side!</p>
@@ -56,22 +56,25 @@ const getName = () => {
 }
 
 const getHouse = () => {
-
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
 const addStudent = (e) => {
-  name = getName();
-  house = getHouse();
-  key = studentKey++;
-  const student_obj = {
-    key,
-    name,
-    house,
-  }
-  student_arr.push(student_obj);
-  studentBuilder(student_arr);
-  console.log(student_arr);
+
+  if( document.getElementById("student-name").value != '') {
+    name = getName();
+    house = getHouse();
+    key = studentKey++;
+    const student_obj = {
+      key,
+      name,
+      house,
+    }
+    student_arr.push(student_obj);
+    studentBuilder(student_arr);
+    //console.log(student_arr);
+    document.getElementById("student-name").value = '';
+  } 
 }
 
 
@@ -81,11 +84,10 @@ const launchHat = (e) => {
       <div class="container student-input-line">
         <div class="row">
           <label for="student_name" class="col-sm-4">Student Name: </label>
-          <input type="text" class="col-sm-4" id="student-name" name="name">
+          <input type="text" class="col-sm-4" id="student-name" name="name" placeholder = "Please enter a name.">
           <button type="button" id="sort-btn" class="btn btn-primary col-sm-4">Sort!</button>
         </div>
       </div>`;
-
 
   printToDom("#jumbotron", domString);
   document.getElementById("sort-btn").addEventListener('click', addStudent);
@@ -101,10 +103,10 @@ const expelStudent = (e) =>  {
       if (student_arr[i].key == keyId) {
         expelled_student_arr.push(student_arr[i]);
         student_arr.splice(i,1);
-        console.log(student_arr);
-        console.log(expelled_student_arr);
+        //console.log(student_arr);
+        //console.log(expelled_student_arr);
         expelled = true;
-        console.log(" in expell");
+        //console.log(" in expell");
         break;
       }
     }
