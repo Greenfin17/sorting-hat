@@ -1,4 +1,7 @@
-
+body {
+  margin: 0;
+  background-color: #aaffee;
+}
 
 h1 {
   text-align: center;
@@ -18,20 +21,51 @@ div.jumbotron {
 .student-input-line {
   font-size: 1.2rem;
   margin: 20px 0 10px;
-  display: flex;
-  justify-content: center;
 }
 
-.student-input-line label {
-  margin-right: 10px;
+.student-input-line label{
+  text-align: right;
+
 }
-
-
 .student-input-line button{
   margin-left: 10px;
+  width: 60px;
+}
+button img {
+  width: 60px;
+  height: auto;
 }
 
-#student_name {
-  width: 30vw;
-  padding-bottom: .25em;
+button.expel {
+  background-color: blue;
+  color: white;
+}
+
+.student-lists {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+div.half-page {
+  width: 50%;
+}
+
+.sorted-students {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 12rem;
+  height: 150px;
+  text-align: center;
+  background-color: #f1decf;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+
+
+.expelled {
+  display: none;
 }
