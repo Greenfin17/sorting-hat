@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #aaffee;
+  background-color: white;
 }
 
 h1 {
@@ -36,10 +36,6 @@ button img {
   height: auto;
 }
 
-button.expel {
-  background-color: blue;
-  color: white;
-}
 
 .student-lists {
   display: flex;
@@ -48,6 +44,10 @@ button.expel {
 
 div.half-page {
   width: 50%;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  min-height: 400px;
 }
 
 .sorted-students {
@@ -64,7 +64,26 @@ div.half-page {
   margin-right: 2em;
 }
 
+const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
+.Gryffindor {
+  background-color: rgb(216, 191, 138);
+}
 
+.Slytherin {
+  background-color: rgb(116, 211, 129);
+}
+
+.Ravenclaw {
+  background-color: rgb(94, 163, 243);
+}
+.Hufflepuff {
+  background-color: rgb(217, 224, 113);
+}
+
+.dark-side {
+  background-color: rgb(90, 64, 66);
+  color: white;
+}
 
 .expelled {
   display: none;
