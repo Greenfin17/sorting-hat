@@ -1,4 +1,7 @@
-
+body {
+  margin: 0;
+  background-color: #aaffee;
+}
 
 h1 {
   text-align: center;
@@ -27,4 +30,42 @@ div.jumbotron {
 .student-input-line button{
   margin-left: 10px;
   width: 60px;
+}
+button img {
+  width: 60px;
+  height: auto;
+}
+
+button.expel {
+  background-color: blue;
+  color: white;
+}
+
+.student-lists {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+div.half-page {
+  width: 50%;
+}
+
+.sorted-students {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 12rem;
+  height: 150px;
+  text-align: center;
+  background-color: #f1decf;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+
+
+.expelled {
+  display: none;
 }
