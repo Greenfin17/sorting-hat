@@ -1,12 +1,8 @@
 console.log("Connected");
 
-
 let studentKey = 0;
-    
-
 
 const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
-
 
 const student_arr = [];
 const expelled_student_arr = [];
@@ -15,9 +11,34 @@ const printToDom = ( elementID, inputString) => {
   document.querySelector(elementID).innerHTML = inputString;
 }
 
+//swap for selection sort
+const swap_students = (arr, index1, index2) => {
+  let temp_student = arr[index1];
+  arr[index1] = arr[index2];
+  arr[index2] = temp_student; 
+}
+
+
+//Selection sort, from https://geeksforgeeks.org
+//Ordering by Houses.
+const ordering = (array) => {
+  let min_index = 0;
+  for(let i = 0; i < array.length - 1; i++) {
+    min_index = i;
+    for(let j = i + 1; j < array.length; j++) {
+      if(array[j].house.localeCompare(array[min_index].house) === -1) {
+        min_index = j;
+      }
+    }
+    swap_students(array, min_index, i);
+  }
+}
+
+//create student cards
 const studentBuilder = (studentArray) => {
   let domString = '';
   let i = 0;
+  ordering(studentArray);
   for(let item of studentArray) {
     domString += `
     <div class="card my-2" id="card_${item.key}">
@@ -32,6 +53,7 @@ const studentBuilder = (studentArray) => {
   printToDom('#student-assignments', domString);
 }
 
+//create expelled student cards
 const expelledBuilder = (expelled_students) => {
   let domString = '';
   let i = 0;
@@ -51,7 +73,6 @@ const expelledBuilder = (expelled_students) => {
 
 
 const getName = () => {
-
   return name = document.querySelector("#student-name").value;
 }
 
@@ -59,8 +80,8 @@ const getHouse = () => {
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
+//Add student
 const addStudent = (e) => {
-
   if( document.getElementById("student-name").value != '') {
     name = getName();
     house = getHouse();
@@ -72,12 +93,11 @@ const addStudent = (e) => {
     }
     student_arr.push(student_obj);
     studentBuilder(student_arr);
-    //console.log(student_arr);
     document.getElementById("student-name").value = '';
   } 
 }
 
-
+//Launch Jumbotron (jumbotron class in parent container in index.html)
 const launchHat = (e) => {
   domString = `
       <h4>Enter First Year Student's Name</h4>
@@ -93,8 +113,8 @@ const launchHat = (e) => {
   document.getElementById("sort-btn").addEventListener('click', addStudent);
 }
 
+//Expel a student
 const expelStudent = (e) =>  {
-  //console.log(e.target.type);
   let cardId = e.target.parentNode.parentNode.id;
   let keyId = e.target.id;
   let expelled = false;
@@ -103,22 +123,21 @@ const expelStudent = (e) =>  {
       if (student_arr[i].key == keyId) {
         expelled_student_arr.push(student_arr[i]);
         student_arr.splice(i,1);
-        //console.log(student_arr);
-        //console.log(expelled_student_arr);
         expelled = true;
-        //console.log(" in expell");
         break;
       }
     }
-    // Make the deleted student's card disappear.
     if(expelled) {
-      document.getElementById(cardId).classList.add("expelled");
+      //add expelled student to expelled student display
       expelledBuilder(expelled_student_arr);
+      // Make the deleted student's card disappear.
+      //document.getElementById(cardId).classList.add("expelled");
+      //changed to printing to dom the modified student array
+      //rather than hiding the array.
+      studentBuilder(student_arr);
     }
   }
 }
-
-  
 
 const buttonEvents = () => {
   document.getElementById("btn-launchHat").addEventListener('click', launchHat);
