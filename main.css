@@ -64,25 +64,31 @@ div.half-page {
   margin-right: 2em;
 }
 
-const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
+
 .Gryffindor {
-  background-color: rgb(216, 191, 138);
+  background-color: rgb(236, 126, 126);
+  border: 5px solid gold;
 }
 
-.Slytherin {
-  background-color: rgb(116, 211, 129);
+.Hufflepuff {
+  background-color: rgb(217, 224, 113);
+  border: 5px solid black;
 }
 
 .Ravenclaw {
   background-color: rgb(94, 163, 243);
+  border: 5px solid #cd7f32;
 }
-.Hufflepuff {
-  background-color: rgb(217, 224, 113);
+
+.Slytherin {
+  background-color: rgb(116, 211, 129);
+  border: 5px solid silver;
 }
+
 
 .dark-side {
   background-color: rgb(90, 64, 66);
-  background-image: url(voldemort_s_army_by_skinst_d2y1mv2.jpg);
+  background-image: url('./images/voldemort_s_army_by_skinst_d2y1mv2.jpg');
   background-size: cover;
   color: white;
 }
