@@ -99,7 +99,7 @@ const addStudent = (e) => {
 
 //Launch Jumbotron (jumbotron class in parent container in index.html)
 const launchHat = (e) => {
-  domString = `
+  let domString = `
       <h4>Enter First Year Student's Name</h4>
       <div class="container student-input-line">
         <div class="row">
