@@ -1,5 +1,7 @@
 console.log("Connected");
 
+import {swap_students, ordering } from './modules/sorting.js';
+
 let studentKey = 0;
 
 const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
@@ -9,29 +11,6 @@ const expelled_student_arr = [];
 
 const printToDom = ( elementID, inputString) => { 
   document.querySelector(elementID).innerHTML = inputString;
-}
-
-//swap for selection sort
-const swap_students = (arr, index1, index2) => {
-  let temp_student = arr[index1];
-  arr[index1] = arr[index2];
-  arr[index2] = temp_student; 
-}
-
-
-//Selection sort, from https://geeksforgeeks.org
-//Ordering by Houses.
-const ordering = (array) => {
-  let min_index = 0;
-  for(let i = 0; i < array.length - 1; i++) {
-    min_index = i;
-    for(let j = i + 1; j < array.length; j++) {
-      if(array[j].house.localeCompare(array[min_index].house) === -1) {
-        min_index = j;
-      }
-    }
-    swap_students(array, min_index, i);
-  }
 }
 
 //create student cards
@@ -83,9 +62,9 @@ const getHouse = () => {
 //Add student
 const addStudent = (e) => {
   if( document.getElementById("student-name").value != '') {
-    name = getName();
-    house = getHouse();
-    key = studentKey++;
+    let name = getName();
+    let house = getHouse();
+    let key = studentKey++;
     const student_obj = {
       key,
       name,
