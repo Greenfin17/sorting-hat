@@ -1,13 +1,17 @@
 body {
   margin: 0;
-  background-color: white;
+  background-color: rgb(199, 170, 137);
+}
+header {
+  background-color: rgb(238, 220, 209);
+  padding-top: 2em;
 }
 
 h1 {
   text-align: center;
 }
 .btn-div {
-  height: 200px;
+  min-height: 200px;
   text-align: center;
 }
 #btn-launchHat {
@@ -35,6 +39,9 @@ button img {
   width: 60px;
   height: auto;
 }
+.student-input-line label{
+  margin-left: 53px;
+}
 
 
 .student-lists {
@@ -50,6 +57,10 @@ div.half-page {
   min-height: 400px;
 }
 
+.half-page h3 {
+  margin-top: 10px;
+}
+
 .sorted-students {
   display: flex;
   flex-wrap: wrap;
@@ -59,11 +70,15 @@ div.half-page {
   width: 12rem;
   height: 180px;
   text-align: center;
-  background-color: #f1decf;
+  background-color: inherit;
+  border: none;
   margin-left: 2em;
   margin-right: 2em;
 }
 
+.card-body {
+  border-radius: 20px;
+}
 
 .Gryffindor {
   background-color: rgb(236, 126, 126);
@@ -95,4 +110,40 @@ div.half-page {
 
 .expelled {
   display: none;
+}
+
+@media ( max-width: 576px ) {
+  .student-input-line label{
+   margin-left: 0;
+   text-align: center;
+  }
+  .student-input-line input{
+    width: 75%;
+    margin-left: 5%;
+  }
+}
+
+@media ( max-width: 376px ) {
+  .row {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .student-input-line input{
+    flex-shrink: 1;
+    width: 100%;
+    display: block;
+    margin: 5px 5% 5px;
+  }
+  .student-input-line button{
+    margin: auto;
+  }
+  div.half-page {
+  width: 100%;
+  min-height: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  }
+  .card.my-2 {
+    margin: auto;
+  }
 }
