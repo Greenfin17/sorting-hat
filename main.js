@@ -59,6 +59,7 @@ const getHouse = () => {
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
+
 //Add student
 const addStudent = (e) => {
   if( document.getElementById("student-name").value != '') {
@@ -73,7 +74,10 @@ const addStudent = (e) => {
     student_arr.push(student_obj);
     studentBuilder(student_arr);
     document.getElementById("student-name").value = '';
-  } 
+    printToDom("#blank-entry", '');
+  } else {
+    document.getElementById("student-name").placeholder= 'Please enter a name.';
+  }
 }
 
 //Launch Jumbotron (jumbotron class in parent container in index.html)
@@ -83,9 +87,10 @@ const launchHat = (e) => {
       <div class="container student-input-line">
         <div class="row">
           <label for="student_name" class="col-sm-4">Student Name: </label>
-          <input type="text" class="col-sm-4" id="student-name" name="name" placeholder = "Please enter a name.">
+          <input type="text" class="col-sm-4" id="student-name" name="name">
           <button type="button" id="sort-btn" class="btn btn-primary col-sm-4">Sort!</button>
         </div>
+        <div id="blank-entry"></div>
       </div>`;
 
   printToDom("#jumbotron", domString);
