@@ -33,7 +33,7 @@ const expelledBuilder = (expelled_students) => {
       `<div class="card my-2" id="expelled_${item.sKeyID}">
         <div class="card-body dark-side">
           <h4 class="card-title">Expelled!</h4>
-          <h5>${item.hogwStudentName}</h5>
+          <h6>${item.hogwStudentName}</h6>
           <p>has gone to the dark side!</p>
         </div>
       </div>`;
