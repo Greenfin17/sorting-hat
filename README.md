@@ -2,7 +2,7 @@
 
 ## Overview
 - This site mimics the Sorting Hat of JK Rowling's Harry Potter series.
-- The user can enter a name and the sorting hat will assign one of the Hogwarts houses for that student.
+- The user can enter a name and the Sorting Hat will assign one of the Hogwarts houses for that student.
 - The user can expell a student where they join the dark side.
   
 ## Wireframes
