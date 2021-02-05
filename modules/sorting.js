@@ -13,7 +13,7 @@ const ordering = (array) => {
   for(let i = 0; i < array.length - 1; i++) {
     min_index = i;
     for(let j = i + 1; j < array.length; j++) {
-      if(array[j].house.localeCompare(array[min_index].house) === -1) {
+      if(array[j].hogwStudentHouse.localeCompare(array[min_index].hogwStudentHouse) === -1) {
         min_index = j;
       }
     }

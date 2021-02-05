@@ -2,7 +2,7 @@ console.log("Connected");
 
 import {swap_students, ordering } from './modules/sorting.js';
 
-let studentKey = 0;
+let studentKeyID = 0;
 
 const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
 
@@ -20,11 +20,11 @@ const studentBuilder = (studentArray) => {
   ordering(studentArray);
   for(let item of studentArray) {
     domString += `
-    <div class="card my-2" id="card_${item.key}">
-      <div class="card-body ${item.house}"">
-        <h4 class="card-title">${item.house}</h4>
-        <p>${item.name}</p>
-        <button type="button" class="btn expel btn-danger" id="${item.key}">Expel!</button>
+    <div class="card my-2" id="card_${item.sKeyID}">
+      <div class="card-body ${item.hogwStudentHouse}">
+        <h4 class="card-title">${item.hogwStudentHouse}</h4>
+        <p>${item.hogwStudentName}</p>
+        <button type="button" class="btn expel btn-danger" id="${item.sKeyID}">Expel!</button>
       </div>
     </div>`;
     i++;
@@ -38,10 +38,10 @@ const expelledBuilder = (expelled_students) => {
   let i = 0;
   for(let item of expelled_students) {
     domString +=
-      `<div class="card my-2" id="expelled_${item.key}">
+      `<div class="card my-2" id="expelled_${item.sKeyID}">
         <div class="card-body dark-side">
           <h4 class="card-title">Expelled!</h4>
-          <h5>${item.name}</h5>
+          <h5>${item.hogwStudentName}</h5>
           <p>has gone to the dark side!</p>
         </div>
       </div>`;
@@ -51,11 +51,11 @@ const expelledBuilder = (expelled_students) => {
 }
 
 
-const getName = () => {
-  return name = document.querySelector("#student-name").value;
+const getHogStudName = () => {
+  return document.querySelector("#student-name").value;
 }
 
-const getHouse = () => {
+const getHogwHouse = () => {
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
@@ -63,17 +63,18 @@ const getHouse = () => {
 //Add student
 const addStudent = (e) => {
   if( document.getElementById("student-name").value != '') {
-    let name = getName();
-    let house = getHouse();
-    let key = studentKey++;
+    let hogwStudentName = getHogStudName();
+    let hogwStudentHouse = getHogwHouse();
+    let sKeyID = studentKeyID++;
     const student_obj = {
-      key,
-      name,
-      house,
+      sKeyID,
+      hogwStudentName,
+      hogwStudentHouse,
     }
     student_arr.push(student_obj);
     studentBuilder(student_arr);
     document.getElementById("student-name").value = '';
+    document.getElementById("student-name").placeholder= '';
     printToDom("#blank-entry", '');
   } else {
     document.getElementById("student-name").placeholder= 'Please enter a name.';
@@ -104,7 +105,7 @@ const expelStudent = (e) =>  {
   let expelled = false;
   if(e.target.type === "button") {
     for (let i = 0; i < student_arr.length; i++) {
-      if (student_arr[i].key == keyId) {
+      if (student_arr[i].sKeyID == keyId) {
         expelled_student_arr.push(student_arr[i]);
         student_arr.splice(i,1);
         expelled = true;

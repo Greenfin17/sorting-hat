@@ -10,16 +10,22 @@ header {
 h1 {
   text-align: center;
 }
+
 .btn-div {
   min-height: 200px;
   text-align: center;
 }
+
 #btn-launchHat {
   margin: 20px auto;
 }
 
 div.jumbotron {
   margin: 20px auto;
+}
+
+div.spacer {
+  height: 5px;
 }
 
 .student-input-line {
@@ -31,34 +37,43 @@ div.jumbotron {
   text-align: right;
 
 }
+
 .student-input-line button{
   margin-left: 10px;
   width: 60px;
 }
+
 button img {
   width: 60px;
   height: auto;
 }
+
 .student-input-line label{
   margin-left: 53px;
 }
-
 
 .student-lists {
   display: flex;
   flex-wrap: wrap; 
 }
 
-div.half-page {
-  width: 50%;
+.student-lists h3 {
+  margin: 30px 0 20px;
+}
+
+div.p3_4-page {
+  width: 60%;
+}
+
+div.p1_4-page {
+  width: 40%;
+}
+
+div.partial_page {
   border: 1px solid black;
   border-radius: 5px;
   text-align: center;
   min-height: 400px;
-}
-
-.half-page h3 {
-  margin-top: 10px;
 }
 
 .sorted-students {
@@ -100,7 +115,6 @@ div.half-page {
   border: 5px solid silver;
 }
 
-
 .dark-side {
   background-color: rgb(90, 64, 66);
   background-image: url('./images/voldemort_s_army_by_skinst_d2y1mv2.jpg');
@@ -113,6 +127,12 @@ div.half-page {
 }
 
 @media ( max-width: 576px ) {
+  div.btn-div {
+    margin-bottom: 20px;
+  }
+  .student-lists {
+    margin-top: -20px;
+  }
   .student-input-line label{
    margin-left: 0;
    text-align: center;
@@ -120,6 +140,16 @@ div.half-page {
   .student-input-line input{
     width: 75%;
     margin-left: 5%;
+  }
+  div.partial_page {
+  width: 100%;
+  min-height: 200px;
+  }
+}
+
+@media ( max-width: 531px ) {
+  .card.my-2 {
+    margin: auto;
   }
 }
 
@@ -136,12 +166,6 @@ div.half-page {
   }
   .student-input-line button{
     margin: auto;
-  }
-  div.half-page {
-  width: 100%;
-  min-height: 200px;
-  border: 1px solid black;
-  border-radius: 5px;
   }
   .card.my-2 {
     margin: auto;
