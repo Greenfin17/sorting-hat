@@ -95,6 +95,10 @@ div.partial_page {
   border-radius: 20px;
 }
 
+.card-body h5 {
+  min-height: 3em;
+}
+
 .Gryffindor {
   background-color: rgb(236, 126, 126);
   border: 5px solid gold;
