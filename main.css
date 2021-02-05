@@ -83,7 +83,7 @@ div.partial_page {
 
 .card {
   width: 12rem;
-  height: 180px;
+  min-height: 200px;
   text-align: center;
   background-color: inherit;
   border: none;
@@ -95,8 +95,16 @@ div.partial_page {
   border-radius: 20px;
 }
 
+/* Leave extra room for longer names
+/  but keep cards buttons at same horizontal level */
+
 .card-body h5 {
   min-height: 3em;
+}
+
+/* match font size for names with student cards */
+.card-body h6 {
+  font-size: 1.25em;
 }
 
 .Gryffindor {
