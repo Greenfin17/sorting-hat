@@ -1,5 +1,7 @@
 console.log("Connected");
 
+import {swap_students, ordering } from './modules/sorting.js';
+
 let studentKey = 0;
 
 const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
@@ -9,29 +11,6 @@ const expelled_student_arr = [];
 
 const printToDom = ( elementID, inputString) => { 
   document.querySelector(elementID).innerHTML = inputString;
-}
-
-//swap for selection sort
-const swap_students = (arr, index1, index2) => {
-  let temp_student = arr[index1];
-  arr[index1] = arr[index2];
-  arr[index2] = temp_student; 
-}
-
-
-//Selection sort, from https://geeksforgeeks.org
-//Ordering by Houses.
-const ordering = (array) => {
-  let min_index = 0;
-  for(let i = 0; i < array.length - 1; i++) {
-    min_index = i;
-    for(let j = i + 1; j < array.length; j++) {
-      if(array[j].house.localeCompare(array[min_index].house) === -1) {
-        min_index = j;
-      }
-    }
-    swap_students(array, min_index, i);
-  }
 }
 
 //create student cards
@@ -80,12 +59,13 @@ const getHouse = () => {
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
+
 //Add student
 const addStudent = (e) => {
   if( document.getElementById("student-name").value != '') {
-    name = getName();
-    house = getHouse();
-    key = studentKey++;
+    let name = getName();
+    let house = getHouse();
+    let key = studentKey++;
     const student_obj = {
       key,
       name,
@@ -94,19 +74,23 @@ const addStudent = (e) => {
     student_arr.push(student_obj);
     studentBuilder(student_arr);
     document.getElementById("student-name").value = '';
-  } 
+    printToDom("#blank-entry", '');
+  } else {
+    document.getElementById("student-name").placeholder= 'Please enter a name.';
+  }
 }
 
 //Launch Jumbotron (jumbotron class in parent container in index.html)
 const launchHat = (e) => {
-  domString = `
+  let domString = `
       <h4>Enter First Year Student's Name</h4>
       <div class="container student-input-line">
         <div class="row">
           <label for="student_name" class="col-sm-4">Student Name: </label>
-          <input type="text" class="col-sm-4" id="student-name" name="name" placeholder = "Please enter a name.">
+          <input type="text" class="col-sm-4" id="student-name" name="name">
           <button type="button" id="sort-btn" class="btn btn-primary col-sm-4">Sort!</button>
         </div>
+        <div id="blank-entry"></div>
       </div>`;
 
   printToDom("#jumbotron", domString);
