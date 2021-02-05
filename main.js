@@ -1,69 +1,33 @@
-console.log("Connected");
+//console.log("Connected");
 
-import {swap_students, ordering } from './modules/sorting.js';
+import { printToDom, studentBuilder, expelledBuilder} from './modules/printing.js';
 
+//Key ID for each student
 let studentKeyID = 0;
 
+//The four student houses of Hogwarts
 const houses_arr = [ "Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff" ];
 
+//Student array
 const student_arr = [];
+
+//Expelled student array
 const expelled_student_arr = [];
 
-const printToDom = ( elementID, inputString) => { 
-  document.querySelector(elementID).innerHTML = inputString;
-}
-
-//create student cards
-const studentBuilder = (studentArray) => {
-  let domString = '';
-  let i = 0;
-  ordering(studentArray);
-  for(let item of studentArray) {
-    domString += `
-    <div class="card my-2" id="card_${item.sKeyID}">
-      <div class="card-body ${item.hogwStudentHouse}">
-        <h4 class="card-title">${item.hogwStudentHouse}</h4>
-        <p>${item.hogwStudentName}</p>
-        <button type="button" class="btn expel btn-danger" id="${item.sKeyID}">Expel!</button>
-      </div>
-    </div>`;
-    i++;
-  }
-  printToDom('#student-assignments', domString);
-}
-
-//create expelled student cards
-const expelledBuilder = (expelled_students) => {
-  let domString = '';
-  let i = 0;
-  for(let item of expelled_students) {
-    domString +=
-      `<div class="card my-2" id="expelled_${item.sKeyID}">
-        <div class="card-body dark-side">
-          <h4 class="card-title">Expelled!</h4>
-          <h5>${item.hogwStudentName}</h5>
-          <p>has gone to the dark side!</p>
-        </div>
-      </div>`;
-    i++;
-  }
-  printToDom('#expelled-students', domString);
-}
-
-
-const getHogStudName = () => {
+//Get student name
+const getHogwStudName = () => {
   return document.querySelector("#student-name").value;
 }
 
+//Get student house
 const getHogwHouse = () => {
   return houses_arr[Math.floor(Math.random() * 4)];
 }
 
-
-//Add student
+//Add a student
 const addStudent = (e) => {
   if( document.getElementById("student-name").value != '') {
-    let hogwStudentName = getHogStudName();
+    let hogwStudentName = getHogwStudName();
     let hogwStudentHouse = getHogwHouse();
     let sKeyID = studentKeyID++;
     const student_obj = {
@@ -71,11 +35,15 @@ const addStudent = (e) => {
       hogwStudentName,
       hogwStudentHouse,
     }
+    //Add student to array of students
     student_arr.push(student_obj);
+
+    //Build student cards in the dom
     studentBuilder(student_arr);
+
+    //Clear text input.
     document.getElementById("student-name").value = '';
     document.getElementById("student-name").placeholder= '';
-    printToDom("#blank-entry", '');
   } else {
     document.getElementById("student-name").placeholder= 'Please enter a name.';
   }
@@ -91,7 +59,6 @@ const launchHat = (e) => {
           <input type="text" class="col-sm-4" id="student-name" name="name">
           <button type="button" id="sort-btn" class="btn btn-primary col-sm-4">Sort!</button>
         </div>
-        <div id="blank-entry"></div>
       </div>`;
 
   printToDom("#jumbotron", domString);
@@ -113,17 +80,15 @@ const expelStudent = (e) =>  {
       }
     }
     if(expelled) {
-      //add expelled student to expelled student display
+      //Add expelled student to expelled student display
       expelledBuilder(expelled_student_arr);
-      // Make the deleted student's card disappear.
-      //document.getElementById(cardId).classList.add("expelled");
-      //changed to printing to dom the modified student array
-      //rather than hiding the array.
+      //Rebuild student array display
       studentBuilder(student_arr);
     }
   }
 }
 
+//Listeners
 const buttonEvents = () => {
   document.getElementById("btn-launchHat").addEventListener('click', launchHat);
   document.getElementById("student-assignments").addEventListener('click', expelStudent);
