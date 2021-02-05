@@ -15,7 +15,7 @@ const studentBuilder = (studentArray) => {
     <div class="card my-2" id="card_${item.sKeyID}">
       <div class="card-body ${item.hogwStudentHouse}">
         <h4 class="card-title">${item.hogwStudentHouse}</h4>
-        <p>${item.hogwStudentName}</p>
+        <h5>${item.hogwStudentName}</h5>
         <button type="button" class="btn expel btn-danger" id="${item.sKeyID}">Expel!</button>
       </div>
     </div>`;
